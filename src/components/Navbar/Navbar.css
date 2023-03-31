@@ -1,0 +1,30 @@
+.h1logo {
+    color: #e50914;
+    font-size: 2.25rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.sign-in {
+    color: #fff;
+    padding-right: 1rem;
+}
+.sign-up {
+    background-color: #e50914;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: #fff;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
