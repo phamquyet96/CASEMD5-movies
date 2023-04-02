@@ -35,6 +35,10 @@
     margin-right: 20px;
     cursor: pointer;
     font-size: 20px;
+    transition: color 0.4s ease;
+}
+.menubar .container .left span:hover {
+    color: #555;
 }
 .menubar .container .right {
     display: flex;
