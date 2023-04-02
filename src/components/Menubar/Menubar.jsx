@@ -10,6 +10,7 @@ const Menubar = () => {
         return () => (window.onscroll = null);
     };
     return (
+
         <div className={isScrolled ? "menubar scrolled" : "menubar"}>
             <div className="container">
                 <div className="left">
@@ -28,7 +29,7 @@ const Menubar = () => {
                     <span>KID</span>
                     <Notifications className="icon" />
                     <img
-                        src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                        src="https://i0.wp.com/chatsach.com/wp-content/uploads/2015/02/jindo1.png?fit=512%2C512&ssl=1"
                         alt=""
                     />
                     <div className="profile">

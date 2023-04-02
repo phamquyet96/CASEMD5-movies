@@ -1,3 +1,4 @@
+
 .menubar {
     width: 100%;
     color: white;
@@ -14,11 +15,13 @@
     background-color: var(--main-color);
 }
 .menubar .container {
-    padding: 0px 50px;
+    padding: 0 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 80px;
+    position: relative;
+    box-sizing: border-box;
 }
 .menubar .container .left {
     display: flex;
@@ -36,11 +39,11 @@
 .menubar .container .right {
     display: flex;
     align-items: center;
-    margin-right: -540px;
-
+    position: absolute;
+    right: 50px;
 }
 .menubar .container .right .icon {
-    margin: 0px 15px;
+    margin: 0 15px;
     cursor: pointer;
 }
 .menubar .container .right img {

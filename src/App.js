@@ -1,14 +1,20 @@
 import {Route, Routes} from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Menubar from "./components/Menubar/Menubar";
+import Home from "./components/Home";
+
+import ReactDOM from 'react-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas)
+
 
 function App() {
     return (
         <div className="App">
-            <Menubar/>
             <Routes>
                 <Route path="/" element={<LandingPage/>}></Route>
+                <Route path="/home" element={<Home/>}></Route>
             </Routes>
         </div>
     );

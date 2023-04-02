@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import requests from "../Requests";
+import Menubar from "./Menubar/Menubar";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 const Main = () => {
     const [movies, setMovies] = useState([]);
@@ -20,8 +23,9 @@ const Main = () => {
             return str;
         }
     };
-
     return (
+        <>
+            <Menubar/>
             <div className='w-full h-[600px] text-white'>
                 <div className='w-full h-full'>
                     <div className='absolute w-full h-[600px] bg-gradient-to-r from-black'></div>
@@ -33,8 +37,8 @@ const Main = () => {
                     <div className='absolute w-full top-[20%] p-4 md:p-8'>
                         <h1 className='text-3xl md:text-5xl font-bold'>{movie?.title}</h1>
                         <div className='my-4'>
-                            <button className='border-radius-15px bg-gray-300 text-black border-gray-300 py-2 px-5'>
-                                Play
+                            <button className='border-radius-15px bg-white rounded text-black border-gray-300 py-2 px-5'>
+                                <FontAwesomeIcon icon={faPlay} style={{ color: "#121212",marginRight: "5px" }}/>  Play
                             </button>
                             <button className='border text-white border-gray-300 py-2 px-5 ml-4'>
                                 Watch Later
@@ -44,12 +48,12 @@ const Main = () => {
                             Released: {movie?.release_date}
                         </p>
                         <p className='w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200'>
-                            {truncateString(movie?.overview, 150)}
+                            {truncateString(movie?.overview, 300)}
                         </p>
                     </div>
                 </div>
             </div>
-
+        </>
     );
 };
 
