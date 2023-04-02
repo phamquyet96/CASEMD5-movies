@@ -1,8 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Home from "./components/Home";
-
-import ReactDOM from 'react-dom'
+import Home from "./pages/Home";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 
