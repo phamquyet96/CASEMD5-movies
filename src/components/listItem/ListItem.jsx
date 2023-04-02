@@ -1,10 +1,8 @@
 import "./listItem.css";
-import {
-  PlayArrow,
-  Add,
-  ThumbUpAltOutlined,
-  ThumbDownOutlined,
-} from "@material-ui/icons";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import AddIcon from '@mui/icons-material/Add';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import { useState } from "react";
 
 export default function ListItem({ index }) {
@@ -27,10 +25,10 @@ export default function ListItem({ index }) {
           <video src={trailer} autoPlay={true} loop />
           <div className="itemInfo">
             <div className="icons">
-              <PlayArrow className="icon" />
-              <Add className="icon" />
-              <ThumbUpAltOutlined className="icon" />
-              <ThumbDownOutlined className="icon" />
+              <PlayArrowIcon className="icon" />
+              <AddIcon className="icon" />
+              <ThumbUpOffAltIcon className="icon" />
+              <ThumbDownOffAltIcon className="icon" />
             </div>
             <div className="itemInfoTop">
               <span>1 hour 14 mins</span>
