@@ -1,68 +1,62 @@
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import requests from "../Requests";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleInfo, faPlay} from '@fortawesome/free-solid-svg-icons';
 
-
-function Movie() {
+const Main = () => {
     const [movies, setMovies] = useState([]);
-    const [flag, setFlag] = useState(false);
-    const navigate = useNavigate();
+
+    const movie = movies[Math.floor(Math.random() * movies.length)];
 
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=1', {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem('token')
-            }
-        }).then(res => {
-            console.log(res.data)
-            setMovies(res.data.results)
-        }).catch(err => {
-            console.log(err)
-        })
-    }, [flag])
+        axios.get(requests.requestNetflixOriginal).then((response) => {
+            setMovies(response.data.results);
+        });
+    }, []);
+    console.log(movie)
 
+
+    const truncateString = (str, num) => {
+        if (str?.length > num) {
+            return str.substring(0, num) + "...";
+        } else {
+            return str;
+        }
+    };
     return (
         <>
-            <br/>
-            <div className="container">
-                <Stack direction="row" spacing={4}>
-                    <TableContainer>
-                        <Table sx={{minWidth: 650}} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Title</TableCell>
-                                    <TableCell >Poster</TableCell>
-                                    <TableCell >Vote</TableCell>
-                                    <TableCell>Date</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {movies && movies.map((movie, index) => (
-                                    <TableRow
-                                        key={index}
-                                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {movie.title}
-                                        </TableCell>
-                                        <TableCell ><img
-                                            src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                                            style={{width: "3 00px", height: "200px"}}></img></TableCell>
-                                        <TableCell >{movie.vote_average}</TableCell>
-                                        <TableCell >{movie.release_date}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Stack>
-
-                ))}
-
+            <div className='w-full h-[800px] text-white'>
+                <div className='w-full h-full'>
+                    <div className='absolute w-full h-[800px] bg-gradient-to-t from-gray-rgb '></div>
+                    <img
+                        className='w-full h-full object-cover'
+                        src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+                        alt={movie?.name}
+                    />
+                    <div className='absolute w-full top-[30%] p-5 md:p-10'>
+                        <h1 className='text-5xl md:text-7xl font-bold'>{movie?.name}</h1>
+                        <div className='my-6'>
+                            <button className='bg-white rounded text-black border-gray-300 py-1 px-5 text-xl font-medium
+                            transition-colors duration-0 ease-in-out hover:bg-gray-300 hover:text-black'>
+                                <FontAwesomeIcon icon={faPlay} style={{ color: "#121212",marginRight: "5px" }}/>  Play
+                            </button>
+                            <button className='bg-gray-500 bg-opacity-50 border-gray text-white font-normal ml-2 py-1 px-5 text-xl rounded
+                            transition-colors duration-0 ease-in-out hover:bg-gray-500 hover:bg-opacity-30 hover:text-white'>
+                                <FontAwesomeIcon icon={faCircleInfo} style={{color: "#ffffff",marginRight: "5px"}} /> More Information
+                            </button>
+                        </div>
+                        <p className='text-gray-400 text-sm pb-1'>
+                            Released: {movie?.release_date || movie?.first_air_date}
+                        </p>
+                        <p className='w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200'>
+                            {truncateString(movie?.overview, 300)}
+                        </p>
+                    </div>
+                </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Movie;
+export default Main;
