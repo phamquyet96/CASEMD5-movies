@@ -43,10 +43,10 @@ const Menubar = () => {
                 </div>
                 <div className="right">
                     <Search className="icon" />
-                    <span>KID</span>
+                    <span>ADULT</span>
                     <Notifications className="icon" />
                     <img
-                        src="https://i0.wp.com/chatsach.com/wp-content/uploads/2015/02/jindo1.png?fit=512%2C512&ssl=1"
+                        src="https://picsum.photos/200"
                         alt=""
                     />
                     <div className="profile">
