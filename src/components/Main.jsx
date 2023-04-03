@@ -4,6 +4,8 @@ import requests from "../Requests";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleInfo, faPlay} from '@fortawesome/free-solid-svg-icons';
 
+
+
 const Main = () => {
     const [movies, setMovies] = useState([]);
 
@@ -14,7 +16,6 @@ const Main = () => {
             setMovies(response.data.results);
         });
     }, []);
-    console.log(movie)
 
 
     const truncateString = (str, num) => {
@@ -42,7 +43,8 @@ const Main = () => {
                                 <FontAwesomeIcon icon={faPlay} style={{ color: "#121212",marginRight: "5px" }}/>  Play
                             </button>
                             <button className='bg-gray-500 bg-opacity-50 border-gray text-white font-normal ml-2 py-1 px-5 text-xl rounded
-                            transition-colors duration-0 ease-in-out hover:bg-gray-500 hover:bg-opacity-30 hover:text-white'>
+                            transition-colors duration-0 ease-in-out hover:bg-gray-500 hover:bg-opacity-30 hover:text-white'
+                            >
                                 <FontAwesomeIcon icon={faCircleInfo} style={{color: "#ffffff",marginRight: "5px"}} /> More Information
                             </button>
                         </div>
