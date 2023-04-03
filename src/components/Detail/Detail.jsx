@@ -60,58 +60,12 @@ const Detail=()=>{
                     </p>
                     <Action title="Action" rowID="1" />
                     <MovieMeta ></MovieMeta>
-                    <Similar filmID="1" header="Similar Film"/>
+                    <Similar filmID="2" header="Similar Film"/>
                 </div>
             </>
 
     )
 }
-function MovieMeta() {
-    const { id} = useParams();
-    const [detail,setDetail]=useState([]);
-    useEffect(()=>{
-        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=e9e9d8da18ae29fc430845952232787c`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem('token')
-            }
-        }).then(res => {
-            setDetail(res.data.results)
-        }).catch(err => {
-            console.log(err)
-        })
-    },[])
-
-            return (
-                <>
-                    {detail && (<div className="py-10">
-                        <div className="flex flex-col gap-10">
-                            {detail.slice(0,2).map((item) => (
-                                <div key={item.id}>
-                                    <h3 className="mb-5 text-xl text-white font-medium p-3 bg-secondary inline-block rounded-lg">
-                                        {item.name}
-                                    </h3>
-                                    <div className="w-full aspect-video">
-                                        <iframe
-                                            width="900"
-                                            height="506"
-                                            src={`https://www.youtube.com/embed/${item.key}`}
-                                            title="Youtube video player"
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            className="w-full h-full object-fill"
-                                        ></iframe>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>)}
-
-                </>
-            )
-}
-
-
 const Action = ({ title, rowID }) => {
 
     const {id}=useParams();
@@ -172,6 +126,53 @@ const Action = ({ title, rowID }) => {
         </>
     );
 };
+
+function MovieMeta() {
+    const { id} = useParams();
+    const [detail,setDetail]=useState([]);
+    useEffect(()=>{
+        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=e9e9d8da18ae29fc430845952232787c`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        }).then(res => {
+            setDetail(res.data.results)
+        }).catch(err => {
+            console.log(err)
+        })
+    },[])
+
+            return (
+                <>
+                    {detail && (<div className="py-10">
+                        <div className="flex flex-col gap-10">
+                            {detail.slice(0,2).map((item) => (
+                                <div key={item.id}>
+                                    <h3 className="mb-5 text-xl text-white font-medium p-3 bg-secondary inline-block rounded-lg">
+                                        {item.name}
+                                    </h3>
+                                    <div className="w-full aspect-video">
+                                        <iframe
+                                            width="900"
+                                            height="506"
+                                            src={`https://www.youtube.com/embed/${item.key}`}
+                                            title="Youtube video player"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            className="w-full h-full object-fill"
+                                        ></iframe>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>)}
+
+                </>
+            )
+}
+
+
 
 
 const Similar = ({ header, filmID }) => {
