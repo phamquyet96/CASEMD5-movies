@@ -26,10 +26,10 @@ const Detail=()=>{
 
             <>
                 <div className="pb-10">
-                    <div className="w-full h-[600px] relative">
+                    <div className="w-full h-[600px] relative bg-gradient-to-t from-gray-rgb">
                         <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
                         <div
-                            className="w-full h-full bg-cover bg-no-repeat"
+                            className="w-full h-full bg-cover bg-no-repeat bg-gradient-to-t from-gray-rgb"
                             style={{
                                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
                             }}
@@ -44,7 +44,7 @@ const Detail=()=>{
                     </div>
                     <h1 className="text-white text-center text-4xl mb-10">{title}</h1>
                     {genres && (
-                        <div className="flex items-center justify-center gap-x-5 mb-10">
+                        <div className="flex text-white items-center justify-center gap-x-5 mb-10">
                             {genres.map((item) => (
                                 <span
                                     key={item.id}
@@ -55,7 +55,7 @@ const Detail=()=>{
                             ))}
                         </div>
                     )}
-                    <p className="text-center text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
+                    <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
                         {overview}
                     </p>
                     <Action title="Action" rowID="1" />
@@ -137,7 +137,7 @@ const Action = ({ title, rowID }) => {
 
     return (
         <>
-            <h2 className='text-black font-bold md:text-xl p-4'>{title}</h2>
+            <h2 className='text-white font-bold md:text-xl p-4'>Cast</h2>
             <div className='relative flex items-center group'>
                 <MdChevronLeft
                     onClick={slideLeft}
@@ -155,7 +155,7 @@ const Action = ({ title, rowID }) => {
                                 src={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
                                 alt={item?.original_name}
                             />
-                            <div className="text-lg text-center font-bold ">{item?.original_name}</div>
+                            <div className="text-lg text-center text-white font-bold ">{item?.original_name}</div>
                             <div
                                 className='absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white'>
                                 <p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
