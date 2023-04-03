@@ -1,0 +1,66 @@
+.menubar {
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background: linear-gradient(to top, transparent 0%, #000 100%);
+}
+:root {
+    --main-color: black; /* replace with your desired color */
+}
+.menubar.scrolled {
+    background-color: var(--main-color);
+}
+.menubar .container {
+    padding: 0px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+.menubar .container .left {
+    display: flex;
+    align-items: center;
+}
+.menubar .container .left img {
+    height: 35px;
+    margin-right: 40px;
+}
+.menubar .container .left span {
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.menubar .container .right {
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+
+}
+.menubar .container .right .icon {
+    margin: 0px 15px;
+    cursor: pointer;
+}
+.menubar .container .right img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.menubar .container .right .profile .options {
+    display: none;
+    background-color: black;
+    border-radius: 5px;
+}
+.menubar .container .right .profile span {
+    padding: 10px;
+    cursor: pointer;
+}
+.menubar .container .right .profile:hover .options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
