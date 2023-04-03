@@ -1,5 +1,6 @@
 const key = process.env.REACT_APP_IMDB_API_KEY
 
+
 const requests = {
     requestPopular: `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`,
     requestNetflixOriginal: `https://api.themoviedb.org/3/discover/tv?api_key=${key}&with_networks=213`,
