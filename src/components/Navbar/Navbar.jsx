@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 import './Navbar.css'
 const Navbar = () => {
     return (
@@ -10,8 +12,12 @@ const Navbar = () => {
                 />
             </div>
             <div className='nav-left'>
-                <button className='sign-in'>Sign In</button>
-                <button className='sign-up'>Sign Up</button>
+                <Link to={'/login'}>
+                    <button className='login'>Login</button>
+                </Link>
+                <Link to={'/register'}>
+                    <button className='register'>Register</button>
+                </Link>
             </div>
         </div>
     )

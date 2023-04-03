@@ -71,3 +71,13 @@
     flex-direction: column;
     position: absolute;
 }
+.logout {
+    background-color: #e50914;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: #fff;
+}

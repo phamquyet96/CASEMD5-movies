@@ -1,6 +1,7 @@
 import { ArrowDropDown, Notifications, Search } from "@mui/icons-material";
 import { useState } from "react";
 import "./Menubar.css";
+import { Link } from "react-router-dom";
 
 const Menubar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -32,12 +33,11 @@ const Menubar = () => {
                         src="https://i0.wp.com/chatsach.com/wp-content/uploads/2015/02/jindo1.png?fit=512%2C512&ssl=1"
                         alt=""
                     />
-                    <div className="profile">
-                        <ArrowDropDown className="icon" />
-                        <div className="options">
-                            <span>Settings</span>
-                            <span>Logout</span>
-                        </div>
+                    <div >
+                        <Link to={'/'}>
+                            <button className='logout'>LogOut</button>
+                        </Link>
+
                     </div>
                 </div>
             </div>
