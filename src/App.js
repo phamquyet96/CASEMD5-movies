@@ -3,6 +3,8 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./pages/Home";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import Detail from "./components/Detail/Detail";
+
 
 library.add(fas)
 
@@ -13,6 +15,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<LandingPage/>}></Route>
                 <Route path="/home" element={<Home/>}></Route>
+                <Route path="/movie/:id" element={<Detail/>}></Route>
             </Routes>
         </div>
     );
