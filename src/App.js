@@ -6,6 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import TVShow from "./pages/TVShow";
 import Movies from "./pages/Movies";
 import New from "./pages/New";
+import Detail from "./components/Detail/Detail";
 
 
 library.add(fas)
@@ -20,8 +21,7 @@ function App() {
                 <Route path="/tvshow" element={<TVShow/>}></Route>
                 <Route path="/movies" element={<Movies/>}></Route>
                 <Route path="/new" element={<New/>}></Route>
-
-
+                <Route path="/movie/:id" element={<Detail/>}></Route>
             </Routes>
             
         </div>
