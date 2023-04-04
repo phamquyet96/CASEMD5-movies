@@ -3,6 +3,7 @@ import Main from "../components/Main";
 import Menubar from "../components/Menubar/Menubar";
 import Row from "../components/Row";
 import requests from "../Requests";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Row rowID='4' title="Top Rated" fetchURL={requests.requestTopRated}/>
             <Row rowID='5' title="Horror" fetchURL={requests.requestHorror}/>
             <Row rowID='6' title="Netfllix Original" fetchURL={requests.requestNetflixOriginal}/>
+            <Footer/>
         </>
     );
 };

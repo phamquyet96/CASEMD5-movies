@@ -1,29 +1,18 @@
-import {ArrowDropDown, Logout, Notifications, Search} from "@mui/icons-material";
+import { ArrowDropDown, Notifications, Search } from "@mui/icons-material";
 import { useState } from "react";
 import "./Menubar.css";
 import React from "react";
-import {Link, NavLink, useNavigate} from "react-router-dom";
-import {UserAuth} from "../../context/AuthContext";
+import { NavLink } from "react-router-dom";
 
 const Menubar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const { user, logOut} = UserAuth();
+
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => (window.onscroll = null);
     };
-
-    const navigate = useNavigate();
-
-    const HandleLogout = async () => {
-        try {
-            await logOut();
-            navigate('/')
-        }catch (err) {
-            console.log(err)
-        }
-    }
     return (
+
         <div className={isScrolled ? "menubar scrolled" : "menubar"}>
             <div className="container">
                 <div className="left">
@@ -47,30 +36,24 @@ const Menubar = () => {
                         <span>New and Popular</span>
                     </NavLink>
 
-                    <NavLink className="navbar-item" activeClassName="is-active" to="/my-list" exact >
+                    <NavLink className="navbar-item" activeClassName="is-active" to="/mylist" exact >
                         <span>My List</span>
                     </NavLink>
 
                 </div>
                 <div className="right">
                     <Search className="icon" />
+                    <span>ADULT</span>
+                    <Notifications className="icon" />
                     <img
-                        src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                        src="https://i0.wp.com/chatsach.com/wp-content/uploads/2015/02/jindo1.png?fit=512%2C512&ssl=1"
+                        src="https://picsum.photos/200"
                         alt=""
                     />
                     <div className="profile">
                         <ArrowDropDown className="icon" />
                         <div className="options">
-                                <Link to='/account'>
-                                    <button className='text-white pr-4'>{user?.email}</button>
-                                </Link>
-                            <button
-                                onClick={HandleLogout}
-                                className='bg-red-600 px-6 py-2 rounded cursor-pointer text-white'
-                            >
-                                Logout
-                            </button>
+                            <span>Settings</span>
+                            <span>Logout</span>
                         </div>
                     </div>
                 </div>
