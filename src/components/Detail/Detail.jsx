@@ -2,7 +2,10 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {MdChevronLeft, MdChevronRight} from "react-icons/md";
-import "./Detail.css"
+import "./Detail.css";
+import Menubar from "../Menubar/Menubar";
+import Footer from "../Footer/Footer";
+
 
 
 
@@ -36,12 +39,13 @@ const Detail=()=>{
             }
         }
         fetchData();
-    },[])
+    },[id])
 
     const { backdrop_path, poster_path, original_title, genres, overview } = detail;
     return(
-
+        
             <>
+            <Menubar />
                 {!isLoading ?
                     (<div className="pb-10">
                         <div className="w-full h-[600px] relative">
@@ -83,7 +87,8 @@ const Detail=()=>{
                 :(
                         <div className="line-loading"></div>
                     )}
-
+            <Footer />
+            
             </>
 
     )
@@ -100,7 +105,7 @@ const Action = ({ title, rowID }) => {
             }}).then((response) => {
             setMovies(response.data.cast);
         });
-    }, []);
+    }, [id]);
 
     const slideLeft = () => {
         const slider = document.getElementById('slider' + rowID);
@@ -162,10 +167,11 @@ function MovieMeta() {
         }).catch(err => {
             console.log(err)
         })
-    },[])
+    },[id])
 
             return (
                 <>
+               
                     {detail && (<div className="py-10">
                         <div className="flex flex-col gap-10">
                             {detail.slice(0,2).map((item) => (
@@ -209,7 +215,7 @@ const Similar = ({ header, filmID }) => {
             }}).then((response) => {
             setMovies(response.data.results);
         });
-    }, []);
+    }, [id]);
 
     const slideLeft = () => {
         const slider = document.getElementById('slider' + filmID);
