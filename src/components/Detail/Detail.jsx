@@ -2,66 +2,88 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {MdChevronLeft, MdChevronRight} from "react-icons/md";
+import "./Detail.css"
 
 
 
 const Detail=()=>{
     const {id}=useParams();
     const [detail,setDetail]=useState([]);
-    useEffect(()=>{
-        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=e9e9d8da18ae29fc430845952232787c&append_to_response=videos`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem('token')
-            }
-        }).then(res => {
-            console.log(res.data)
-            setDetail(res.data)
-        }).catch(err => {
-            console.log(err)
+    const [isLoading, setIsLoading] = useState(false);
+    function sleep() {
+        return new Promise((resolve) => {
+            setTimeout(resolve, 300)
         })
+    }
+    useEffect(()=>{
+
+        async function  fetchData() {
+            try {
+                setIsLoading(true)
+                let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=e9e9d8da18ae29fc430845952232787c&append_to_response=videos`, {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem('token')
+                    }
+                })
+                await sleep();
+                if(res) {
+                    setDetail(res.data)
+                }
+                setIsLoading(false);
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData();
     },[])
 
     const { backdrop_path, poster_path, original_title, genres, overview } = detail;
     return(
 
             <>
-                <div className="pb-10">
-                    <div className="w-full h-[600px] relative">
-                        <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
-                        <div
-                            className="w-full h-full bg-cover bg-no-repeat"
-                            style={{
-                                backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
-                            }}
-                        ></div>
-                    </div>
-                    <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
-                        <img
-                            src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                            className="w-full h-full object-cover rounded-xl"
-                            alt=""
-                        />
-                    </div>
-                    <h1 className="text-white text-center text-4xl mb-10" >{original_title}</h1>
-                    {genres && (
-                        <div className="flex text-white items-center justify-center gap-x-5 mb-10">
-                            {genres.map((item) => (
-                                <span
-                                    key={item.id}
-                                    className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
-                                >
+                {!isLoading ?
+                    (<div className="pb-10">
+                        <div className="w-full h-[600px] relative">
+                            <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
+                            <div
+                                className="w-full h-full bg-cover bg-no-repeat"
+                                style={{
+                                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
+                                }}
+                            ></div>
+                        </div>
+                        <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
+                            <img
+                                src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                                className="w-full h-full object-cover rounded-xl"
+                                alt=""
+                            />
+                        </div>
+                        <h1 className="text-white text-center text-4xl mb-10" >{original_title}</h1>
+                        {genres && (
+                            <div className="flex text-white items-center justify-center gap-x-5 mb-10">
+                                {genres.map((item) => (
+                                    <span
+                                        key={item.id}
+                                        className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
+                                    >
                 {item.name}
               </span>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
+                        <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
+                            {overview}
+                        </p>
+                        <Action title="Action" rowID="1" />
+                        <MovieMeta ></MovieMeta>
+                        <Similar filmID="2" header="Similar Film"/>
+                    </div>)
+                :(
+                        <div className="line-loading"></div>
                     )}
-                    <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
-                        {overview}
-                    </p>
-                    <Action title="Action" rowID="1" />
-                    <MovieMeta ></MovieMeta>
-                    <Similar filmID="2" header="Similar Film"/>
-                </div>
+
             </>
 
     )
@@ -153,8 +175,8 @@ function MovieMeta() {
                                     </h3>
                                     <div className="w-full aspect-video">
                                         <iframe
-                                            width="900"
-                                            height="506"
+                                            width="400"
+                                            height="500"
                                             src={`https://www.youtube.com/embed/${item.key}`}
                                             title="Youtube video player"
                                             frameBorder="0"
@@ -200,7 +222,7 @@ const Similar = ({ header, filmID }) => {
 
     return (
         <>
-            <h2 className='text-black font-bold md:text-xl p-4'>{header}</h2>
+            <h2 className='text-white font-bold md:text-xl p-4'>{header}</h2>
             <div className='relative flex items-center group'>
                 <MdChevronLeft
                     onClick={slideLeft}

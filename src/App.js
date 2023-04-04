@@ -18,9 +18,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<LandingPage/>}></Route>
                 <Route path="/home" element={<Home/>}></Route>
-                <Route path="/TVShow" element={<TVShow/>}></Route>
-                <Route path="/Movies" element={<Movies/>}></Route>
-                <Route path="/New" element={<New/>}></Route>
+                <Route path="/tvshow" element={<TVShow/>}></Route>
+                <Route path="/movies" element={<Movies/>}></Route>
+                <Route path="/new" element={<New/>}></Route>
                 <Route path="/movie/:id" element={<Detail/>}></Route>
             </Routes>
             

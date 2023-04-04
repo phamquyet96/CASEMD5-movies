@@ -1,9 +1,9 @@
 import React from 'react';
 import Main from "../components/Main";
-import MenubarA from "../components/Menubar/Menubar+18";
 import Row from "../components/Row";
 import requests from "../Requests";
 import Footer from "../components/Footer/Footer";
+import Menubar from "../components/Menubar/Menubar";
 
 
 const New = () => {
@@ -11,7 +11,7 @@ const New = () => {
    
     return (
         <>
-            <MenubarA/>
+            <Menubar/>
             <Main/>
             
             <Row rowID='1' title="New" fetchURL={requests.requestMovies}/>
