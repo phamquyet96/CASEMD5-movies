@@ -1,16 +1,30 @@
-import { ArrowDropDown, Search } from "@mui/icons-material";
+
+import {ArrowDropDown, Logout, Notifications, Search} from "@mui/icons-material";
 import { useState } from "react";
 import "./Menubar.css";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import {UserAuth} from "../../context/AuthContext";
 
 const Menubar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const { user, logOut} = UserAuth();
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => (window.onscroll = null);
     };
+
+    const navigate = useNavigate();
+
+    const HandleLogout = async () => {
+        try {
+            await logOut();
+            navigate('/')
+        }catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <div className={isScrolled ? "menubar scrolled" : "menubar"}>
             <div className="container">
@@ -42,10 +56,6 @@ const Menubar = () => {
                 </div>
                 <div className="right" >
                     <Search className="icon" />
-                    <NavLink className="navbar-item" activeClassName="" to="#"> 
-                    <span>KID</span>
-                    </NavLink>
-                    
                     <img
                         // src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                       
@@ -55,8 +65,15 @@ const Menubar = () => {
                     <div className="profile">
                         <ArrowDropDown className="icon" />
                         <div className="options">
-                            <span>Settings</span>
-                            <span>Logout</span>
+                                <Link to='/mylist'>
+                                    <button className='text-white pr-4'>{user?.email}</button>
+                                </Link>
+                            <button
+                                onClick={HandleLogout}
+                                className='bg-red-600 px-6 py-2 rounded cursor-pointer text-white'
+                            >
+                                Logout
+                            </button>
                         </div>
                     </div>
                 </div>

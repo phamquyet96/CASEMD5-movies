@@ -2,9 +2,8 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {MdChevronLeft, MdChevronRight} from "react-icons/md";
-import "./Detail.css";
-import Menubar from "../Menubar/Menubar";
-import Footer from "../Footer/Footer";
+
+import "./Detail.css"
 
 
 
@@ -39,39 +38,39 @@ const Detail=()=>{
             }
         }
         fetchData();
-    },[id])
+    },[])
 
     const { backdrop_path, poster_path, original_title, genres, overview } = detail;
     return(
-        
-            <>
-            <Menubar />
-                {!isLoading ?
-                    (<div className="pb-10">
-                        <div className="w-full h-[600px] relative">
-                            <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
-                            <div
-                                className="w-full h-full bg-cover bg-no-repeat"
-                                style={{
-                                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
-                                }}
-                            ></div>
-                        </div>
-                        <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
-                            <img
-                                src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                                className="w-full h-full object-cover rounded-xl"
-                                alt=""
-                            />
-                        </div>
-                        <h1 className="text-white text-center text-4xl mb-10" >{original_title}</h1>
-                        {genres && (
-                            <div className="flex text-white items-center justify-center gap-x-5 mb-10">
-                                {genres.map((item) => (
-                                    <span
-                                        key={item.id}
-                                        className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
-                                    >
+
+        <>
+            {!isLoading ?
+                (<div className="pb-10">
+                    <div className="w-full h-[600px] relative">
+                        <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
+                        <div
+                            className="w-full h-full bg-cover bg-no-repeat"
+                            style={{
+                                backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
+                            }}
+                        ></div>
+                    </div>
+                    <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
+                        <img
+                            src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                            className="w-full h-full object-cover rounded-xl"
+                            alt=""
+                        />
+                    </div>
+                    <h1 className="text-white text-center text-4xl mb-10" >{original_title}</h1>
+                    {genres && (
+                        <div className="flex text-white items-center justify-center gap-x-5 mb-10">
+                            {genres.map((item) => (
+                                <span
+                                    key={item.id}
+                                    className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
+                                >
+
                 {item.name}
               </span>
                                 ))}
@@ -87,13 +86,23 @@ const Detail=()=>{
                 :(
                         <div className="line-loading"></div>
                     )}
-            <Footer />
-            
-            </>
+                    <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
+                        {overview}
+                    </p>
+                    <Action title="Action" rowID="1" />
+                    <MovieMeta ></MovieMeta>
+                    <Similar filmID="2" header="Similar Film"/>
+                </div>)
+                :(
+                    <div className="line-loading"></div>
+                )}
+
+        </>
 
     )
 }
-const Action = ({ title, rowID }) => {
+export const Action = ({ title, rowID }) => {
+
 
     const {id}=useParams();
     const [movies, setMovies] = useState([]);
@@ -167,37 +176,37 @@ function MovieMeta() {
         }).catch(err => {
             console.log(err)
         })
-    },[id])
+    },[])
 
-            return (
-                <>
-               
-                    {detail && (<div className="py-10">
-                        <div className="flex flex-col gap-10">
-                            {detail.slice(0,2).map((item) => (
-                                <div key={item.id}>
-                                    <h3 className="mb-5 text-xl text-white font-medium p-3 bg-secondary inline-block rounded-lg">
-                                        {item.name}
-                                    </h3>
-                                    <div className="w-full aspect-video">
-                                        <iframe
-                                            width="400"
-                                            height="500"
-                                            src={`https://www.youtube.com/embed/${item.key}`}
-                                            title="Youtube video player"
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            className="w-full h-full object-fill"
-                                        ></iframe>
-                                    </div>
-                                </div>
-                            ))}
+    return (
+        <>
+            {detail && (<div className="py-10">
+                <div className="flex flex-col gap-10">
+                    {detail.slice(0,2).map((item) => (
+                        <div key={item.id}>
+                            <h3 className="mb-5 text-xl text-white font-medium p-3 bg-secondary inline-block rounded-lg">
+                                {item.name}
+                            </h3>
+                            <div className="w-full aspect-video flex justify-center items-center">
+                                <iframe
+                                    width="400"
+                                    height="500"
+                                    src={`https://www.youtube.com/embed/${item.key}`}
+                                    title="Youtube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="w-3/4 h-3/4 object-fill"
+                                ></iframe>
+                            </div>
                         </div>
-                    </div>)}
+                    ))}
+                </div>
+            </div>)}
 
-                </>
-            )
+        </>
+    )
+
 }
 
 
