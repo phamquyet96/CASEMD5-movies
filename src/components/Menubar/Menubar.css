@@ -9,7 +9,7 @@
     background: linear-gradient(to top, transparent 0%, #000 100%);
 }
 :root {
-    --main-color: black; /* replace with your desired color */
+    --main-color: black;
 }
 .menubar.scrolled {
     background-color: var(--main-color);
@@ -45,11 +45,13 @@
 .menubar .container .right {
     display: flex;
     align-items: center;
-    margin-right: 0px;
+    margin-right: -420px;
+    width:200px;
+    justify-content: space-between;
 
 }
 .menubar .container .right .icon {
-    margin: 0px 15px;
+    margin: 0px 10px;
     right: 50px;
     cursor: pointer;
 }

@@ -8,6 +8,7 @@ import {UserAuth} from "../../context/AuthContext";
 const Menubar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { user, logOut} = UserAuth();
+
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => (window.onscroll = null);
@@ -47,7 +48,7 @@ const Menubar = () => {
                         <span>New and Popular</span>
                     </NavLink>
 
-                    <NavLink className="navbar-item" activeClassName="is-active" to="/my-list" exact >
+                    <NavLink className="navbar-item" activeClassName="is-active" to="/mylist" exact >
                         <span>My List</span>
                     </NavLink>
 
@@ -62,7 +63,7 @@ const Menubar = () => {
                     <div className="profile">
                         <ArrowDropDown className="icon" />
                         <div className="options">
-                                <Link to='/account'>
+                                <Link to='/mylist'>
                                     <button className='text-white pr-4'>{user?.email}</button>
                                 </Link>
                             <button
