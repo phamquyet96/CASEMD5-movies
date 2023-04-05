@@ -2,7 +2,9 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {MdChevronLeft, MdChevronRight} from "react-icons/md";
+
 import "./Detail.css"
+
 
 
 
@@ -68,10 +70,21 @@ const Detail=()=>{
                                     key={item.id}
                                     className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
                                 >
+
                 {item.name}
               </span>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
+                        <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
+                            {overview}
+                        </p>
+                        <Action title="Action" rowID="1" />
+                        <MovieMeta ></MovieMeta>
+                        <Similar filmID="2" header="Similar Film"/>
+                    </div>)
+                :(
+                        <div className="line-loading"></div>
                     )}
                     <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
                         {overview}
@@ -90,6 +103,7 @@ const Detail=()=>{
 }
 export const Action = ({ title, rowID }) => {
 
+
     const {id}=useParams();
     const [movies, setMovies] = useState([]);
 
@@ -100,7 +114,7 @@ export const Action = ({ title, rowID }) => {
             }}).then((response) => {
             setMovies(response.data.cast);
         });
-    }, []);
+    }, [id]);
 
     const slideLeft = () => {
         const slider = document.getElementById('slider' + rowID);
@@ -192,6 +206,7 @@ function MovieMeta() {
 
         </>
     )
+
 }
 
 
@@ -209,7 +224,7 @@ const Similar = ({ header, filmID }) => {
             }}).then((response) => {
             setMovies(response.data.results);
         });
-    }, []);
+    }, [id]);
 
     const slideLeft = () => {
         const slider = document.getElementById('slider' + filmID);

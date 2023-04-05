@@ -46,6 +46,7 @@
     display: flex;
     align-items: center;
     margin-right: -420px;
+
     width:200px;
     justify-content: space-between;
 
@@ -63,6 +64,7 @@
     object-fit: cover;
     cursor: pointer;
 }
+
 .menubar .container .right .profile .options {
     display: none;
     background-color: black;
