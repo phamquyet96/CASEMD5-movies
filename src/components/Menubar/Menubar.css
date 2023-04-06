@@ -45,8 +45,8 @@
 .menubar .container .right {
     display: flex;
     align-items: center;
-    margin-right: -420px;
-    width:200px;
+    margin-right: 0px;
+    width:300px;
     justify-content: space-between;
 
 }

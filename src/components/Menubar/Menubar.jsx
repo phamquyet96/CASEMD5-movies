@@ -75,8 +75,6 @@ const Menubar = () => {
                             />
                         </svg>
                     </button>
-                    <Search title={"result"} rowID={1}/>
-                    <Search className="icon"/>
                     <img
                         src="https://i0.wp.com/chatsach.com/wp-content/uploads/2015/02/jindo1.png?fit=512%2C512&ssl=1"
                         alt=""
