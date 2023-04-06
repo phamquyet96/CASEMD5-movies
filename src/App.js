@@ -7,6 +7,8 @@ import TVShow from "./pages/TVShow";
 import Movies from "./pages/Movies";
 import New from "./pages/New";
 import Detail from "./components/Detail/Detail";
+import Search from "./components/Search/Search";
+import Menubar from "./components/Menubar/Menubar";
 
 
 library.add(fas)
@@ -22,6 +24,7 @@ function App() {
                 <Route path="/movies" element={<Movies/>}></Route>
                 <Route path="/new" element={<New/>}></Route>
                 <Route path="/movie/:id" element={<Detail/>}></Route>
+                <Route path="/search" element={<Menubar/>}></Route>
             </Routes>
             
         </div>
