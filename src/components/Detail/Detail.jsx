@@ -44,62 +44,51 @@ const Detail=()=>{
     return(
 
         <>
-            {!isLoading ?
-                (<div className="pb-10">
-                    <div className="w-full h-[600px] relative">
-                        <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
-                        <div
-                            className="w-full h-full bg-cover bg-no-repeat"
-                            style={{
-                                backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
-                            }}
-                        ></div>
-                    </div>
-                    <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
-                        <img
-                            src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                            className="w-full h-full object-cover rounded-xl"
-                            alt=""
-                        />
-                    </div>
-                    <h1 className="text-white text-center text-4xl mb-10" >{original_title}</h1>
-                    {genres && (
-                        <div className="flex text-white items-center justify-center gap-x-5 mb-10">
-                            {genres.map((item) => (
-                                <span
-                                    key={item.id}
-                                    className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
-                                >
+        {!isLoading ?
+            (<div className="pb-10">
+                <div className="w-full h-[600px] relative">
+                    <div className="overlay absolute inset-0 bg-black bg-opacity-60"></div>
+                    <div
+                        className="w-full h-full bg-cover bg-no-repeat"
+                        style={{
+                            backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
+                        }}
+                    ></div>
+                </div>
+                <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] relative z-10 pb-10">
+                    <img
+                        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                        className="w-full h-full object-cover rounded-xl"
+                        alt=""
+                    />
+                </div>
+                <h1 className="text-white text-center text-4xl mb-10" >{original_title}</h1>
+                {genres && (
+                    <div className="flex text-white items-center justify-center gap-x-5 mb-10">
+                        {genres.map((item) => (
+                            <span
+                                key={item.id}
+                                className="py-2 px-4 border-[#F62682] text-primary border rounded-lg"
+                            >
 
                 {item.name}
               </span>
-                                ))}
-                            </div>
-                        )}
-                        <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
-                            {overview}
-                        </p>
-                        <Action title="Action" rowID="1" />
-                        <MovieMeta ></MovieMeta>
-                        <Similar filmID="2" header="Similar Film"/>
-                    </div>)
-                :(
-                        <div className="line-loading"></div>
-                    )}
-                    <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
-                        {overview}
-                    </p>
-                    <Action title="Action" rowID="1" />
-                    <MovieMeta ></MovieMeta>
-                    <Similar filmID="2" header="Similar Film"/>
-                </div>)
-                :(
-                    <div className="line-loading"></div>
+                        ))}
+                    </div>
                 )}
-
+                <p className="text-center text-white text-lg leading-relaxed max-w-[600px] mx-auto mb-10">
+                    {overview}
+                </p>
+                <Action title="Action" rowID="1" />
+                <MovieMeta ></MovieMeta>
+                <Similar filmID="2" header="Similar Film"/>
+            </div>)
+            :(
+                <div className="line-loading"></div>
+            )}
         </>
 
-    )
+)
 }
 export const Action = ({ title, rowID }) => {
 
